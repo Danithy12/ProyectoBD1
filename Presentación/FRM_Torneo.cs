@@ -46,13 +46,13 @@ namespace ProyectoBD1
             else
             {
                 //Objeto para agregar los datos
-                Torneo torneo = new Torneo();
+                ClsTorneo torneo = new ClsTorneo();
 
                 torneo.Nombre_torneo = txt_NombreTorneo.Text;
                 torneo.Categoria_T = cboBox_Categoria_Torneo.Text;
                 torneo.Fecha_Inicio = Convert.ToDateTime(txt_FechaTorneo.Text);
                 torneo.Fecha_Final = Convert.ToDateTime(txt_FechaFinal.Text);
-                torneo.Ubicación_T = txt_UbicacionTorneo.Text;
+                torneo.Ubicacion_T = txt_UbicacionTorneo.Text;
                 torneo.Reglas_Especificas = txt_ReglasEspecificas.Text;
 
                 //Condicional para modificar y guardar el id en los datos selecionados
@@ -125,7 +125,7 @@ namespace ProyectoBD1
             cboBox_Categoria_Torneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Categoria_T"].Value);
             txt_FechaTorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Fecha_Inicio"].Value);
             txt_FechaFinal.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Fecha_Final"].Value);
-            txt_UbicacionTorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Ubicación_T"].Value);
+            txt_UbicacionTorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Ubicacion_T"].Value);
             txt_ReglasEspecificas.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Reglas_Especificas"].Value);
 
         }
@@ -135,6 +135,7 @@ namespace ProyectoBD1
             txt_Idtorneo.Clear();
             txt_NombreTorneo.Clear();
             txt_FechaTorneo.Clear();
+            txt_FechaFinal.Clear();
             txt_UbicacionTorneo.Clear();
             txt_ReglasEspecificas.Clear();
             dgvTorneo.CurrentCell = null;

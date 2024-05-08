@@ -53,6 +53,8 @@
             this.btnModificarJugador = new System.Windows.Forms.Button();
             this.txt_ApellidoJugador = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btn_Cargar_Equipos = new System.Windows.Forms.Button();
+            this.cbo_Cargar_Equipos = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroJugador)).BeginInit();
             this.SuspendLayout();
             // 
@@ -348,6 +350,24 @@
             this.label3.Text = "Apellido";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btn_Cargar_Equipos
+            // 
+            this.btn_Cargar_Equipos.Location = new System.Drawing.Point(1114, 14);
+            this.btn_Cargar_Equipos.Name = "btn_Cargar_Equipos";
+            this.btn_Cargar_Equipos.Size = new System.Drawing.Size(115, 56);
+            this.btn_Cargar_Equipos.TabIndex = 81;
+            this.btn_Cargar_Equipos.Text = "Cargar\r\nEquipo";
+            this.btn_Cargar_Equipos.UseVisualStyleBackColor = true;
+            this.btn_Cargar_Equipos.Click += new System.EventHandler(this.btn_Cargar_Equipos_Click);
+            // 
+            // cbo_Cargar_Equipos
+            // 
+            this.cbo_Cargar_Equipos.FormattingEnabled = true;
+            this.cbo_Cargar_Equipos.Location = new System.Drawing.Point(1249, 29);
+            this.cbo_Cargar_Equipos.Name = "cbo_Cargar_Equipos";
+            this.cbo_Cargar_Equipos.Size = new System.Drawing.Size(191, 28);
+            this.cbo_Cargar_Equipos.TabIndex = 80;
+            // 
             // FRM_RegistroJugador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -355,6 +375,8 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1465, 686);
+            this.Controls.Add(this.btn_Cargar_Equipos);
+            this.Controls.Add(this.cbo_Cargar_Equipos);
             this.Controls.Add(this.txt_ApellidoJugador);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnModificarJugador);
@@ -415,5 +437,7 @@
         private System.Windows.Forms.Button btnModificarJugador;
         private System.Windows.Forms.TextBox txt_ApellidoJugador;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_Cargar_Equipos;
+        private System.Windows.Forms.ComboBox cbo_Cargar_Equipos;
     }
 }

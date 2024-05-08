@@ -14,37 +14,80 @@ namespace ProyectoBD1
 {
     public class ClsProcedimientos
 
-        //LAS MÉTODOS, CLASES DE SQL Y COMANDOS DE SQL QUE SE UTILIZARON EN LOS PROCEDIMIENTOS DE LA TABLA TORNEO SE APLICARAN A TODOS, POR LO TANTO NO VAKOS A SEGUIR DOCUMENTANDO
-        //CABE RECALCAR QUE: A LA HORA DE HACER LAS CONSULTAS EN SQL SERVER TENDRÁ QUE APLICAR BBUENAS PRACTICAS Y HACERLAS EN MAYÚSCULAS SOSTENIDAS
+    //LAS MÉTODOS, CLASES DE SQL Y COMANDOS DE SQL QUE SE UTILIZARON EN LOS PROCEDIMIENTOS DE LA TABLA TORNEO SE APLICARAN A TODOS, POR LO TANTO NO VAKOS A SEGUIR DOCUMENTANDO
+    //CABE RECALCAR QUE: A LA HORA DE HACER LAS CONSULTAS EN SQL SERVER TENDRÁ QUE APLICAR BBUENAS PRACTICAS Y HACERLAS EN MAYÚSCULAS SOSTENIDAS
     {
         //Cracion de procedimiento para guardar los datos de la tabal torneo
-        public static int GuardarTorneo(Torneo ObjetoComando)
+        public static int GuardarTorneo(ClsTorneo ObjetoComando)
         {
             int Retorna = 0;
 
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
-                string query = "INSERT INTO TORNEOS (Nombre_Torneo, Categoria_T, Fecha_Inicio, Fecha_Final, Ubicación_T, Reglas_Especificas) " +
-                    "VALUES(@Nombre_Torneo, @Categoria_T, @Fecha_Inicio, @Fecha_Final, @Ubicacion_T, @Reglas_Especificas)";
+                string query = "INSERT INTO TORNEOS (Nombre_Torneo, Categoria_T, Fecha_Inicio, Fecha_Final, Ubicacion_T, Reglas_Especificas, Estado) " +
+                    "VALUES(@Nombre_Torneo, @Categoria_T, @Fecha_Inicio, @Fecha_Final, @Ubicacion_T, @Reglas_Especificas, @Estado)";
 
                 SqlCommand Comando = new SqlCommand(query, Conexion);
                 Comando.Parameters.AddWithValue("@Nombre_Torneo", ObjetoComando.Nombre_torneo);
                 Comando.Parameters.AddWithValue("@Categoria_T", ObjetoComando.Categoria_T);
                 Comando.Parameters.AddWithValue("@Fecha_Inicio", ObjetoComando.Fecha_Inicio);
                 Comando.Parameters.AddWithValue("@Fecha_Final", ObjetoComando.Fecha_Final);
-                Comando.Parameters.AddWithValue("@Ubicacion_T", ObjetoComando.Ubicación_T);
+                Comando.Parameters.AddWithValue("@Ubicacion_T", ObjetoComando.Ubicacion_T);
                 Comando.Parameters.AddWithValue("@Reglas_Especificas", ObjetoComando.Reglas_Especificas);
-                Comando.Parameters.AddWithValue("@Estado",ObjetoComando.Estado);
+                Comando.Parameters.AddWithValue("@Estado", ObjetoComando.Estado);
 
                 Retorna = Comando.ExecuteNonQuery();
             }
             return Retorna;
         }
+        public static List<ClsTorneo> ObtenerTorneosActivos()
+        {
+            List<ClsTorneo> torneosActivos = new List<ClsTorneo>();
+            SqlConnection Conexion = null;
+
+            try
+            {
+                Conexion = ClsConexion.GetInstancia().CrearConexion();
+                SqlCommand Comando = new SqlCommand("SELECT * FROM TORNEOS WHERE Estado = 1", Conexion);
+
+                Conexion.Open();
+                SqlDataReader Reader = Comando.ExecuteReader();
+
+                while (Reader.Read())
+                {
+                    ClsTorneo torneo = new ClsTorneo
+                    {
+                        id_Torneo = Reader.GetInt32(Reader.GetOrdinal("id_Torneo")),
+                        Nombre_torneo = Reader.IsDBNull(Reader.GetOrdinal("Nombre_torneo")) ? null : Reader.GetString(Reader.GetOrdinal("Nombre_torneo")),
+                        Categoria_T = Reader.IsDBNull(Reader.GetOrdinal("Categoria_T")) ? null : Reader.GetString(Reader.GetOrdinal("Categoria_T")),
+                        Fecha_Inicio = Reader.GetDateTime(Reader.GetOrdinal("Fecha_Inicio")),
+                        Fecha_Final = Reader.GetDateTime(Reader.GetOrdinal("Fecha_Final")),
+                        Ubicacion_T = Reader.IsDBNull(Reader.GetOrdinal("Ubicacion_T")) ? null : Reader.GetString(Reader.GetOrdinal("Ubicacion_T")),
+                        Reglas_Especificas = Reader.IsDBNull(Reader.GetOrdinal("Reglas_Especificas")) ? null : Reader.GetString(Reader.GetOrdinal("Reglas_Especificas")),
+                        Estado = Reader.GetBoolean(Reader.GetOrdinal("Estado"))
+                    };
+                    torneosActivos.Add(torneo);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener los torneos activos: " + ex.Message);
+            }
+            finally
+            {
+                if (Conexion != null && Conexion.State == ConnectionState.Open)
+                {
+                    Conexion.Close();
+                }
+            }
+            return torneosActivos;
+        }
 
         //Creamos una lista para mostrar en nuestro data view todos los datos que ingresemos
-        public static List<Torneo> PresentarRegistroTorneo()
+        public static List<ClsTorneo> PresentarRegistroTorneo()
         {
-            List<Torneo> Lista = new List<Torneo>();
+            List<ClsTorneo> Lista = new List<ClsTorneo>();
             //Conexion
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
@@ -57,14 +100,14 @@ namespace ProyectoBD1
                 while (Reader.Read())
                 {
                     //Objeto de classe Torneo + sus atributos
-                    Torneo torneo = new Torneo();
+                    ClsTorneo torneo = new ClsTorneo();
 
                     torneo.id_Torneo = Reader.GetInt32(0);
                     torneo.Nombre_torneo = Reader.GetString(1);
                     torneo.Categoria_T = Reader.GetString(2);
                     torneo.Fecha_Inicio = Reader.GetDateTime(3);
                     torneo.Fecha_Final = Reader.GetDateTime(4);
-                    torneo.Ubicación_T = Reader.GetString(5);
+                    torneo.Ubicacion_T = Reader.GetString(5);
                     torneo.Reglas_Especificas = Reader.GetString(6);
                     Lista.Add(torneo);
 
@@ -76,7 +119,7 @@ namespace ProyectoBD1
             }
         }
         //Procedimeinto para poder modificar los datos ingresados ne Torneo
-        public static int ModificarTorneo(Torneo torneo) //Objeto 
+        public static int ModificarTorneo(ClsTorneo torneo) //Objeto 
         {
             //Variables para resultados o y 1
             int Resultados = 0;
@@ -86,7 +129,7 @@ namespace ProyectoBD1
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
                 string query = "UPDATE TORNEOS SET Nombre_torneo='"+torneo.Nombre_torneo+"', Categoria_T='"+torneo.Categoria_T+ ", Fecha_Inicio="+torneo.Fecha_Inicio+ ",Fecha_Final="+torneo.Fecha_Final+"," +
-                    " Ubicación_T='"+torneo.Ubicación_T+ "',  Reglas_Especificas='"+torneo.Reglas_Especificas+ "' WHERE id_Torneo="+torneo.id_Torneo+" "; //Datos a actualizar mas sintaxix de Sql Server
+                    " Ubicacion_T='"+torneo.Ubicacion_T+ "',  Reglas_Especificas='"+torneo.Reglas_Especificas+ "' WHERE id_Torneo="+torneo.id_Torneo+" "; //Datos a actualizar mas sintaxix de Sql Server
 
                 SqlCommand Comando = new SqlCommand(query, Conexion);
 
@@ -134,6 +177,48 @@ namespace ProyectoBD1
 
             }
             return Retorna;
+        }
+        public static List<ClsRegistroEquipo> ObtenerRegistroEquipoActivos()
+        {
+            List<ClsRegistroEquipo> torneosActivos = new List<ClsRegistroEquipo>();
+            SqlConnection Conexion = null;
+
+            try
+            {
+                Conexion = ClsConexion.GetInstancia().CrearConexion();
+                SqlCommand Comando = new SqlCommand("SELECT * FROM REGISTRO_EQUIPO WHERE id_Equipo = 1", Conexion);
+
+                Conexion.Open();
+                SqlDataReader Reader = Comando.ExecuteReader();
+
+                while (Reader.Read())
+                {
+                    ClsRegistroEquipo Equipo = new ClsRegistroEquipo
+                    {
+                        id_Equipo = Reader.GetInt32(Reader.GetOrdinal("id_Equipo")),
+                        id_Torneo = Reader.GetInt32(Reader.GetOrdinal("id_Torneo")),
+                        Nombre = Reader.GetString(Reader.GetOrdinal("Nombre")),
+                        Categoria = Reader.GetString(Reader.GetOrdinal("Categoria")),
+                        Cantidad_Jugadores = Reader.GetInt32(Reader.GetOrdinal("Cantidad_Jugadores")),
+                        Patrocinadores = Reader.GetString(Reader.GetOrdinal("Patrocinadores")),
+                        Estado = Reader.GetBoolean(Reader.GetOrdinal("Estado"))
+                    };
+                    torneosActivos.Add(Equipo);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener los Equipos activos: " + ex.Message);
+            }
+            finally
+            {
+                if (Conexion != null && Conexion.State == ConnectionState.Open)
+                {
+                    Conexion.Close();
+                }
+            }
+            return torneosActivos;
         }
 
         public static List<ClsRegistroJugador> PresentarRegistroJugador()
