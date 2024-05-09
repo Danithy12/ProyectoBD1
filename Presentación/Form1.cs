@@ -26,17 +26,16 @@ namespace ProyectoBD1
         {
             FRM_Contenido Contenido = new FRM_Contenido();
             Contenido.Show();
+
+            this.Hide();
         }
 
         private void btn_Historial_Click(object sender, EventArgs e)
         {
             FRM_Historial Historial = new FRM_Historial();
             Historial.Show();
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            this.Hide();
         }
     }
 }

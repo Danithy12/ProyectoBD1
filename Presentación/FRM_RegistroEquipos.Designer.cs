@@ -224,6 +224,7 @@
             this.cbo_CargarTorneo.Name = "cbo_CargarTorneo";
             this.cbo_CargarTorneo.Size = new System.Drawing.Size(224, 28);
             this.cbo_CargarTorneo.TabIndex = 70;
+            this.cbo_CargarTorneo.SelectedIndexChanged += new System.EventHandler(this.cbo_CargarTorneo_SelectedIndexChanged);
             // 
             // cbo_CargarCategoria
             // 

@@ -297,16 +297,18 @@ namespace ProyectoBD1
             return Retorna;
         }
 
-        public static int GuardarEquipo(ClsRegistroEquipo Equipo)
+        public static int GuardarEquipo(ClsRegistroEquipo Equipo, string id_torneo)
         {
             int Retorna = 0;
 
+            //id_torneo = Convert.ToInt32(id_torneo); 
             //Creamos la conexión con SQL SERVER y en su defecto nuestra base de datos por medio del comando SqlConnection
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
                 //Variable para registrar todos los datos llamados por medio del objeto de la clase
-                string query = "INSERT INTO REGISTRO_EQUIPOS(Nombre, Categoria, Cantidad_Jugadores, Patrocinadores,Estado)" +
-                    " VALUES('" + Equipo.Nombre + "', '" + Equipo.Categoria + "', " + Equipo.Cantidad_Jugadores + ", '" + Equipo.Patrocinadores + "',"+Equipo.Estado+" )";
+                string query = "INSERT INTO REGISTRO_EQUIPOS(id_Torneo,Nombre, Categoria, Cantidad_Jugadores, Patrocinadores,Estado)" +
+                    " VALUES("+id_torneo+ ",'" + Equipo.Nombre + "', '" + Equipo.Categoria + "', " + Equipo.Cantidad_Jugadores + ", '" +
+                    Equipo.Patrocinadores + "',"+0+" )";
 
                 //Creamos un comando de Sql que resiva nuestra variable con los datos y nuestro objeto de la clase conexion
                 SqlCommand Comando = new SqlCommand(query, Conexion);
@@ -342,7 +344,7 @@ namespace ProyectoBD1
                     //Objeto de classe Registro_Equipo + sus atributos
                     ClsRegistroEquipo Equipo = new ClsRegistroEquipo();
                     Equipo.id_Equipo = Reader.GetInt32(0);
-                    //Equipo.id_Torneo = Reader.GetInt32(1);
+                    Equipo.id_Torneo = Reader.GetInt32(1);
                     Equipo.Nombre = Reader.GetString(2);
                     Equipo.Categoria = Reader.GetString(3);
                     Equipo.Cantidad_Jugadores = Reader.GetInt32(4);

@@ -73,7 +73,7 @@ namespace ProyectoBD1
                 }
                 else
                 {
-                    int Resulta = ClsProcedimientos.GuardarEquipo(Equipo);
+                    int Resulta = ClsProcedimientos.GuardarEquipo(Equipo,cbo_CargarTorneo.Text);
 
                     if (Resulta > 0)
                     {
@@ -192,6 +192,11 @@ namespace ProyectoBD1
 
             cbo_CargarCategoria.Items.Insert(0, "-Seleccione categoría-");
             cbo_CargarCategoria.SelectedIndex = 0;
+        }
+
+        private void cbo_CargarTorneo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
