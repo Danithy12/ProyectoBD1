@@ -18,6 +18,7 @@ namespace ProyectoBD1
         public FRM_RegistroJugador()
         {
             InitializeComponent();
+            CargarEquipo();
         }
         SqlConnection Conexion = new SqlConnection("server=DESKTOP-63RH14Q\\SQLEXPRESS; database=PRUEBAFINAL; integrated security=true");
 
@@ -166,43 +167,27 @@ namespace ProyectoBD1
             }
         }
 
-        private void btn_Cargar_Equipos_Click(object sender, EventArgs e)
+        private void CargarEquipo()
         {
             try
             {
                 Conexion.Open();
 
-                string Consulta = "SELECT * FROM REGISTRO_EQUIPOS WHERE Estado = 1";
-
-                SqlCommand Comando = new SqlCommand(Consulta, Conexion);
+                SqlCommand Comando = new SqlCommand("SELECT * FROM REGISTRO_EQUIPO WHERE Estado = 1", Conexion);
                 SqlDataReader Lector = Comando.ExecuteReader();
 
-                List<ClsRegistroEquipo> listaEquipo = new List<ClsRegistroEquipo>();
+                List<ClsRegistroEquipo> listaTorneos = new List<ClsRegistroEquipo>();
                 while (Lector.Read())
                 {
-                    ClsRegistroEquipo Equipo = new ClsRegistroEquipo
-                    {
-                        id_Equipo = Lector.GetInt32(Lector.GetOrdinal("id_Equipo")),
-                        Nombre = Lector.GetString(Lector.GetOrdinal("Nombre")),
-                        // Asegúrate de agregar aquí el resto de las propiedades si es necesario
-                    };
-                    listaEquipo.Add(Equipo);
+                    cbo_Cargar_Equipos.Items.Add(Lector[1].ToString());
+                    cbo_Cargar_Equipos.Items.Add(Lector[2].ToString());
                 }
-                Lector.Close();
-
-                // Agrega un elemento al principio de la lista si es necesario.
-                listaEquipo.Insert(0, new ClsRegistroEquipo { id_Equipo = 0, Nombre = "--Seleccione un Equipo--" });
-
-                cbo_Cargar_Equipos.DataSource = null; // Limpia el DataSource antes de asignar una nueva lista
-                cbo_Cargar_Equipos.DataSource = listaEquipo;
-                cbo_Cargar_Equipos.DisplayMember = "Nombre";
-                cbo_Cargar_Equipos.ValueMember = "id_Equipo";
-
+                cbo_Cargar_Equipos.Items.Insert(0, "-Selecciones torneo-");
                 cbo_Cargar_Equipos.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los torneos: " + ex.Message);
+                MessageBox.Show("Error al cargar los equipos: " + ex.Message);
             }
             finally
             {
@@ -211,7 +196,6 @@ namespace ProyectoBD1
                     Conexion.Close();
                 }
             }
-
         }
     }
 }

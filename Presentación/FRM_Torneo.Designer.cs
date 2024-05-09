@@ -47,7 +47,7 @@
             this.txt_FechaFinal = new System.Windows.Forms.TextBox();
             this.lbl_FechaFinal_Torneo = new System.Windows.Forms.Label();
             this.cboBox_Categoria_Torneo = new System.Windows.Forms.ComboBox();
-            this.btn_Categoria_Torneo = new System.Windows.Forms.Button();
+            this.lbl_Categoria = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTorneo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,15 +269,17 @@
             this.cboBox_Categoria_Torneo.Size = new System.Drawing.Size(191, 28);
             this.cboBox_Categoria_Torneo.TabIndex = 39;
             // 
-            // btn_Categoria_Torneo
+            // lbl_Categoria
             // 
-            this.btn_Categoria_Torneo.Location = new System.Drawing.Point(18, 109);
-            this.btn_Categoria_Torneo.Name = "btn_Categoria_Torneo";
-            this.btn_Categoria_Torneo.Size = new System.Drawing.Size(115, 56);
-            this.btn_Categoria_Torneo.TabIndex = 40;
-            this.btn_Categoria_Torneo.Text = "Cargar\r\nCategoría";
-            this.btn_Categoria_Torneo.UseVisualStyleBackColor = true;
-            this.btn_Categoria_Torneo.Click += new System.EventHandler(this.btn_Categoria_Torneo_Click);
+            this.lbl_Categoria.AutoSize = true;
+            this.lbl_Categoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_Categoria.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Categoria.Location = new System.Drawing.Point(17, 124);
+            this.lbl_Categoria.Name = "lbl_Categoria";
+            this.lbl_Categoria.Size = new System.Drawing.Size(103, 24);
+            this.lbl_Categoria.TabIndex = 40;
+            this.lbl_Categoria.Text = "Categoría";
+            this.lbl_Categoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FRM_Torneo
             // 
@@ -285,7 +287,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1813, 595);
-            this.Controls.Add(this.btn_Categoria_Torneo);
+            this.Controls.Add(this.lbl_Categoria);
             this.Controls.Add(this.cboBox_Categoria_Torneo);
             this.Controls.Add(this.txt_FechaFinal);
             this.Controls.Add(this.lbl_FechaFinal_Torneo);
@@ -333,6 +335,6 @@
         private System.Windows.Forms.TextBox txt_FechaFinal;
         private System.Windows.Forms.Label lbl_FechaFinal_Torneo;
         private System.Windows.Forms.ComboBox cboBox_Categoria_Torneo;
-        private System.Windows.Forms.Button btn_Categoria_Torneo;
+        private System.Windows.Forms.Label lbl_Categoria;
     }
 }

@@ -17,6 +17,7 @@ namespace ProyectoBD1
         public FRM_Torneo()
         {
             InitializeComponent();
+            CargarCategoria();
         }
         SqlConnection Conexion = new SqlConnection("server=DESKTOP-63RH14Q\\SQLEXPRESS; database=PRUEBAFINAL; integrated security=true");
         
@@ -37,6 +38,7 @@ namespace ProyectoBD1
         {
             if (string.IsNullOrWhiteSpace(cboBox_Categoria_Torneo.Text) ||
                 string.IsNullOrWhiteSpace(txt_FechaTorneo.Text) ||
+                string.IsNullOrWhiteSpace(txt_FechaFinal.Text) ||
                 string.IsNullOrWhiteSpace(txt_NombreTorneo.Text) ||
                 string.IsNullOrWhiteSpace(txt_UbicacionTorneo.Text)
                 )
@@ -138,7 +140,6 @@ namespace ProyectoBD1
             txt_FechaFinal.Clear();
             txt_UbicacionTorneo.Clear();
             txt_ReglasEspecificas.Clear();
-            dgvTorneo.CurrentCell = null;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -162,24 +163,28 @@ namespace ProyectoBD1
                 refreshPantalla();
             }
         }
-
-        private void btn_Categoria_Torneo_Click(object sender, EventArgs e)
+        private void CargarCategoria()
         {
+            cboBox_Categoria_Torneo.Items.Clear();
             Conexion.Open();
 
-            string Consulta = "SELECT * FROM CATEGORIAS";
+            SqlCommand Comando = new SqlCommand("SELECT * FROM CATEGORIAS", Conexion);
 
-            SqlCommand Comando = new SqlCommand(Consulta,Conexion);
-            SqlDataReader Lector = Comando.ExecuteReader();
-
-            while (Lector.Read())
+            SqlDataReader Leer = Comando.ExecuteReader();
+            while (Leer.Read())
             {
-                cboBox_Categoria_Torneo.Items.Add(Lector.GetString(0));
-                cboBox_Categoria_Torneo.Items.Add(Lector.GetString(1));
-                cboBox_Categoria_Torneo.Items.Add(Lector.GetString(2));
-                cboBox_Categoria_Torneo.Items.Add(Lector.GetString(3));
+                cboBox_Categoria_Torneo.Items.Add(Leer[0].ToString());
+                cboBox_Categoria_Torneo.Items.Add(Leer[1].ToString());
+                cboBox_Categoria_Torneo.Items.Add(Leer[2].ToString());
+                cboBox_Categoria_Torneo.Items.Add(Leer[3].ToString());
             }
+
+
             Conexion.Close();
+
+            cboBox_Categoria_Torneo.Items.Insert(0, "-Seleccione categoría-");
+            cboBox_Categoria_Torneo.SelectedIndex = 0;
         }
+
     }
 }

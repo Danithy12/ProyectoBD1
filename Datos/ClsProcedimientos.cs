@@ -178,6 +178,7 @@ namespace ProyectoBD1
             }
             return Retorna;
         }
+        
         public static List<ClsRegistroEquipo> ObtenerRegistroEquipoActivos()
         {
             List<ClsRegistroEquipo> torneosActivos = new List<ClsRegistroEquipo>();
@@ -300,18 +301,12 @@ namespace ProyectoBD1
         {
             int Retorna = 0;
 
-            // Verificamos si alguno de los parámetros es NULL
-            if (Equipo.id_Equipo == null || Equipo.id_Torneo == null || Equipo.Nombre == null || Equipo.Categoria == null || Equipo.Cantidad_Jugadores == null || Equipo.Patrocinadores == null)
-            {
-                throw new ArgumentException("Uno o más parámetros son NULL");
-            }
-
             //Creamos la conexión con SQL SERVER y en su defecto nuestra base de datos por medio del comando SqlConnection
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
                 //Variable para registrar todos los datos llamados por medio del objeto de la clase
-                string query = "INSERT INTO REGISTRO_EQUIPOS(Nombre, Categoria, Cantidad_Jugadores, Patrocinadores)" +
-                    " VALUES('" + Equipo.Nombre + "', '" + Equipo.Categoria + "', " + Equipo.Cantidad_Jugadores + ", '" + Equipo.Patrocinadores + "' )";
+                string query = "INSERT INTO REGISTRO_EQUIPOS(Nombre, Categoria, Cantidad_Jugadores, Patrocinadores,Estado)" +
+                    " VALUES('" + Equipo.Nombre + "', '" + Equipo.Categoria + "', " + Equipo.Cantidad_Jugadores + ", '" + Equipo.Patrocinadores + "',"+Equipo.Estado+" )";
 
                 //Creamos un comando de Sql que resiva nuestra variable con los datos y nuestro objeto de la clase conexion
                 SqlCommand Comando = new SqlCommand(query, Conexion);
