@@ -1,6 +1,6 @@
 ﻿namespace ProyectoBD1
 {
-    partial class FRM_RegistroEquipos
+    partial class RegistroEquiposs
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_RegistroEquipos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistroEquiposs));
             this.lbl_EquipoVisitan = new System.Windows.Forms.Label();
             this.btn_GuardarEquipos = new System.Windows.Forms.Button();
             this.txt_IdTorneo = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@
             this.lbl_EquipoVisitan.AutoSize = true;
             this.lbl_EquipoVisitan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_EquipoVisitan.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_EquipoVisitan.Location = new System.Drawing.Point(12, 381);
+            this.lbl_EquipoVisitan.Location = new System.Drawing.Point(12, 184);
             this.lbl_EquipoVisitan.Name = "lbl_EquipoVisitan";
             this.lbl_EquipoVisitan.Size = new System.Drawing.Size(107, 48);
             this.lbl_EquipoVisitan.TabIndex = 64;
@@ -103,10 +103,10 @@
             // 
             this.txt_CantidadJugadores.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_CantidadJugadores.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_CantidadJugadores.Location = new System.Drawing.Point(183, 403);
+            this.txt_CantidadJugadores.Location = new System.Drawing.Point(183, 206);
             this.txt_CantidadJugadores.Name = "txt_CantidadJugadores";
             this.txt_CantidadJugadores.Size = new System.Drawing.Size(191, 26);
-            this.txt_CantidadJugadores.TabIndex = 59;
+            this.txt_CantidadJugadores.TabIndex = 1;
             this.txt_CantidadJugadores.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_SalirPresentacion
@@ -135,9 +135,9 @@
             this.dgvRegistroEquipos.ReadOnly = true;
             this.dgvRegistroEquipos.RowHeadersWidth = 62;
             this.dgvRegistroEquipos.RowTemplate.Height = 28;
+            this.dgvRegistroEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvRegistroEquipos.Size = new System.Drawing.Size(1456, 471);
             this.dgvRegistroEquipos.TabIndex = 56;
-            this.dgvRegistroEquipos.SelectionChanged += new System.EventHandler(this.dgvRegistroEquipos_SelectionChanged);
             // 
             // lbl_TorneoPrograma
             // 
@@ -199,10 +199,10 @@
             // 
             this.txt_Patrocinadores_Equipo.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_Patrocinadores_Equipo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Patrocinadores_Equipo.Location = new System.Drawing.Point(183, 486);
+            this.txt_Patrocinadores_Equipo.Location = new System.Drawing.Point(183, 289);
             this.txt_Patrocinadores_Equipo.Name = "txt_Patrocinadores_Equipo";
             this.txt_Patrocinadores_Equipo.Size = new System.Drawing.Size(191, 26);
-            this.txt_Patrocinadores_Equipo.TabIndex = 69;
+            this.txt_Patrocinadores_Equipo.TabIndex = 2;
             this.txt_Patrocinadores_Equipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_Patrocinadores
@@ -210,7 +210,7 @@
             this.lbl_Patrocinadores.AutoSize = true;
             this.lbl_Patrocinadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_Patrocinadores.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Patrocinadores.Location = new System.Drawing.Point(8, 485);
+            this.lbl_Patrocinadores.Location = new System.Drawing.Point(8, 288);
             this.lbl_Patrocinadores.Name = "lbl_Patrocinadores";
             this.lbl_Patrocinadores.Size = new System.Drawing.Size(159, 24);
             this.lbl_Patrocinadores.TabIndex = 68;
@@ -220,16 +220,15 @@
             // cbo_CargarTorneo
             // 
             this.cbo_CargarTorneo.FormattingEnabled = true;
-            this.cbo_CargarTorneo.Location = new System.Drawing.Point(150, 159);
+            this.cbo_CargarTorneo.Location = new System.Drawing.Point(150, 369);
             this.cbo_CargarTorneo.Name = "cbo_CargarTorneo";
             this.cbo_CargarTorneo.Size = new System.Drawing.Size(224, 28);
             this.cbo_CargarTorneo.TabIndex = 70;
-            this.cbo_CargarTorneo.SelectedIndexChanged += new System.EventHandler(this.cbo_CargarTorneo_SelectedIndexChanged);
             // 
             // cbo_CargarCategoria
             // 
             this.cbo_CargarCategoria.FormattingEnabled = true;
-            this.cbo_CargarCategoria.Location = new System.Drawing.Point(150, 231);
+            this.cbo_CargarCategoria.Location = new System.Drawing.Point(150, 441);
             this.cbo_CargarCategoria.Name = "cbo_CargarCategoria";
             this.cbo_CargarCategoria.Size = new System.Drawing.Size(224, 28);
             this.cbo_CargarCategoria.TabIndex = 72;
@@ -238,10 +237,10 @@
             // 
             this.txt_Nombre_Equipo.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_Nombre_Equipo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Nombre_Equipo.Location = new System.Drawing.Point(183, 317);
+            this.txt_Nombre_Equipo.Location = new System.Drawing.Point(183, 120);
             this.txt_Nombre_Equipo.Name = "txt_Nombre_Equipo";
             this.txt_Nombre_Equipo.Size = new System.Drawing.Size(191, 26);
-            this.txt_Nombre_Equipo.TabIndex = 75;
+            this.txt_Nombre_Equipo.TabIndex = 0;
             this.txt_Nombre_Equipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_NombreEquipo
@@ -249,7 +248,7 @@
             this.lbl_NombreEquipo.AutoSize = true;
             this.lbl_NombreEquipo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_NombreEquipo.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_NombreEquipo.Location = new System.Drawing.Point(8, 316);
+            this.lbl_NombreEquipo.Location = new System.Drawing.Point(8, 119);
             this.lbl_NombreEquipo.Name = "lbl_NombreEquipo";
             this.lbl_NombreEquipo.Size = new System.Drawing.Size(86, 24);
             this.lbl_NombreEquipo.TabIndex = 74;
@@ -261,7 +260,7 @@
             this.lbl_LlamarCategoria.AutoSize = true;
             this.lbl_LlamarCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_LlamarCategoria.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_LlamarCategoria.Location = new System.Drawing.Point(12, 235);
+            this.lbl_LlamarCategoria.Location = new System.Drawing.Point(12, 445);
             this.lbl_LlamarCategoria.Name = "lbl_LlamarCategoria";
             this.lbl_LlamarCategoria.Size = new System.Drawing.Size(103, 24);
             this.lbl_LlamarCategoria.TabIndex = 76;
@@ -273,14 +272,14 @@
             this.lbk_LlamarTorneo.AutoSize = true;
             this.lbk_LlamarTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbk_LlamarTorneo.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbk_LlamarTorneo.Location = new System.Drawing.Point(12, 159);
+            this.lbk_LlamarTorneo.Location = new System.Drawing.Point(12, 369);
             this.lbk_LlamarTorneo.Name = "lbk_LlamarTorneo";
             this.lbk_LlamarTorneo.Size = new System.Drawing.Size(79, 24);
             this.lbk_LlamarTorneo.TabIndex = 77;
             this.lbk_LlamarTorneo.Text = "Torneo";
             this.lbk_LlamarTorneo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // FRM_RegistroEquipos
+            // RegistroEquiposs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -306,7 +305,8 @@
             this.Controls.Add(this.dgvRegistroEquipos);
             this.Controls.Add(this.lbl_TorneoPrograma);
             this.Controls.Add(this.lbl_Equipo);
-            this.Name = "FRM_RegistroEquipos";
+            this.Name = "RegistroEquiposs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRM_RegistroEquipos";
             this.Load += new System.EventHandler(this.FRM_RegistroEquipos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistroEquipos)).EndInit();

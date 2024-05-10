@@ -17,5 +17,6 @@ namespace ProyectoBD1
             public string Genero { get; set; }
             public string Telefono { get; set; }
             public string Correo { get; set; }
+            public bool Estado { get; set; }
     }
 }

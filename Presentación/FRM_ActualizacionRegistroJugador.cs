@@ -96,26 +96,12 @@ namespace ProyectoBD1
             ClsConexion Conexion = new ClsConexion();
             Conexion.CrearConexion();
 
-            refreshPantalla();
+            dgvRegistroActualizacionJugador.DataSource = ClsProcedimientos.PresentarRegistroJugador();
         }
         public void refreshPantalla()
         {
             dgvRegistroActualizacionJugador.DataSource = ClsProcedimientos.PresentarRegistroTorneo();
         }
-
-        private void dgvRegistroActualizacionJugador_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_Id_ActualizacionJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["id_Actualizacion_JUGADOR"].Value);
-            txt_idJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["id_Jugador"].Value);
-            txt_NuevoNombreJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Nombre"].Value);
-            txt_NuevoApellidoJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Apellido"].Value);
-            txt_NuevoDocumentoJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Documento"].Value);
-            txt_NuevaEdadJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Edad"].Value);
-            txt_NuevoGeneroJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Genero"].Value);
-            txt_NuevoTeleJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Telefono"].Value);
-            txt_NuevoCorreoJugador.Text = Convert.ToString(dgvRegistroActualizacionJugador.CurrentRow.Cells["Correo"].Value);
-        }
-
         private void btnModificarJugador_Click(object sender, EventArgs e)
         {
             txt_Id_ActualizacionJugador.Clear();

@@ -20,12 +20,7 @@ namespace ProyectoBD1
         private void btn_SalirPresentacion_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btn_Atras_Click(object sender, EventArgs e)
-        {
-            Form1 Principal = new Form1();
-            Principal.Show();
+            Application.Exit();
         }
 
         private void btn_Torneo_Click(object sender, EventArgs e)
@@ -54,7 +49,7 @@ namespace ProyectoBD1
 
         private void btn_RegistrarEquipo_Click(object sender, EventArgs e)
         {
-            FRM_RegistroEquipos RegistrarEquipos = new FRM_RegistroEquipos();
+            RegistroEquiposs RegistrarEquipos = new RegistroEquiposs();
             RegistrarEquipos.Show();
         }
 
@@ -62,6 +57,14 @@ namespace ProyectoBD1
         {
             FRM_Posiciones Posiciones = new FRM_Posiciones();
             Posiciones.Show();
+        }
+
+        private void btn_VolverAtras_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+            
         }
     }
 }

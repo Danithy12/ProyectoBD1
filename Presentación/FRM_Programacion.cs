@@ -94,25 +94,13 @@ namespace ProyectoBD1
             ClsConexion Conexion = new ClsConexion();
             Conexion.CrearConexion();
 
-            refreshPantalla();
+            dgvProgramacion.DataSource = ClsProcedimientos.PresentarRegistroProgramacion();
         }
 
         public void refreshPantalla()
         {
             dgvProgramacion.DataSource = ClsProcedimientos.PresentarRegistroTorneo();
         }
-
-        private void dgvProgramacion_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_IdPrograma.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["id_Programacion"].Value);
-            txt_NombreTorneo.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["id_Torneo"].Value);
-            txt_FechaPrograma.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["Fecha"].Value);
-            txt_HoraProgramaci.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["Hora"].Value);
-            txt_UbicacionPrograma.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["Ubicacion"].Value);
-            txt_EquipoLocal.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["Equipo_Local"].Value);
-            txt_EquipoVisitante.Text = Convert.ToString(dgvProgramacion.CurrentRow.Cells["Equipo_Visitante"].Value);
-        }
-
         private void btnLimpiarProgramacion_Click(object sender, EventArgs e)
         {
             txt_IdPrograma.Clear();

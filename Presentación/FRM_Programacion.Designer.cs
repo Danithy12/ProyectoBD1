@@ -146,7 +146,6 @@
             this.dgvProgramacion.RowTemplate.Height = 28;
             this.dgvProgramacion.Size = new System.Drawing.Size(1470, 492);
             this.dgvProgramacion.TabIndex = 38;
-            this.dgvProgramacion.SelectionChanged += new System.EventHandler(this.dgvProgramacion_SelectionChanged);
             // 
             // txt_HoraProgramaci
             // 

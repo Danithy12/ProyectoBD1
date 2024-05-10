@@ -26,13 +26,6 @@ namespace ProyectoBD1
         {
             this.Close();
         }
-
-        private void btn_Atras_Click(object sender, EventArgs e)
-        {
-            FRM_Contenido Contenido = new FRM_Contenido();
-            Contenido.Show();
-        }
-
         //Método que no dejárá guardar los datos hasta que sean ingresados todos, not null
         private void btn_GuardarTorneo_Click(object sender, EventArgs e)
         {
@@ -60,7 +53,6 @@ namespace ProyectoBD1
                 //Condicional para modificar y guardar el id en los datos selecionados
                 if (dgvTorneo.SelectedRows.Count == 1)
                 {
-
                 
                 //Variable para modificar los datos
                 int id = Convert.ToInt32(dgvTorneo.CurrentRow.Cells["id_Torneo"]. Value);
@@ -81,6 +73,7 @@ namespace ProyectoBD1
                         {
                             MessageBox.Show("Error al modificar los datos");
                         }
+                        refreshPantalla(); //LLamamos el metodo cuando se modifique
                     }
                 }
                 else //Si no existe los va a guardar
@@ -95,9 +88,10 @@ namespace ProyectoBD1
                     {
                         MessageBox.Show("Error al guardar los datos");
                     }
+                  
                 }
             }
-            refreshPantalla(); //LLamamos el metodo cuando se guarde
+            refreshPantalla();
 
         }
 
@@ -107,7 +101,7 @@ namespace ProyectoBD1
             ClsConexion Conexion = new ClsConexion();
             Conexion.CrearConexion();
 
-            refreshPantalla();//Llamamos el metodo cuando se cargue
+            dgvTorneo.DataSource = ClsProcedimientos.PresentarRegistroTorneo();
 
             //Ocultamos ID para que no se pueda modificar porque esta automatico
             txt_Idtorneo.Enabled = false;
@@ -120,20 +114,9 @@ namespace ProyectoBD1
         }
 
         //Método para que aparezcan los datos ingresados en los textbox y se puedan modificar
-        private void dgvTorneo_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_Idtorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["id_Torneo"].Value);
-            txt_NombreTorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Nombre_torneo"].Value);
-            cboBox_Categoria_Torneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Categoria_T"].Value);
-            txt_FechaTorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Fecha_Inicio"].Value);
-            txt_FechaFinal.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Fecha_Final"].Value);
-            txt_UbicacionTorneo.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Ubicacion_T"].Value);
-            txt_ReglasEspecificas.Text = Convert.ToString(dgvTorneo.CurrentRow.Cells["Reglas_Especificas"].Value);
-
-        }
-
         private void btn_LimpiarTorneo_Click(object sender, EventArgs e)
         {
+            cboBox_Categoria_Torneo.Items.Clear();
             txt_Idtorneo.Clear();
             txt_NombreTorneo.Clear();
             txt_FechaTorneo.Clear();
@@ -160,8 +143,9 @@ namespace ProyectoBD1
                 {
                     MessageBox.Show("Error en la eliminación de datos");
                 }
-                refreshPantalla();
+                
             }
+            refreshPantalla();
         }
         private void CargarCategoria()
         {
@@ -173,6 +157,8 @@ namespace ProyectoBD1
             SqlDataReader Leer = Comando.ExecuteReader();
             while (Leer.Read())
             {
+                cboBox_Categoria_Torneo.Items.Clear();
+
                 cboBox_Categoria_Torneo.Items.Add(Leer[0].ToString());
                 cboBox_Categoria_Torneo.Items.Add(Leer[1].ToString());
                 cboBox_Categoria_Torneo.Items.Add(Leer[2].ToString());

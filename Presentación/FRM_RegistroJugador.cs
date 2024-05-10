@@ -26,13 +26,6 @@ namespace ProyectoBD1
         {
             this.Close();
         }
-
-        private void btn_Atras_Click(object sender, EventArgs e)
-        {
-            FRM_Contenido Contenido  = new FRM_Contenido();
-            Contenido.Show();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             FRM_ActualizacionRegistroJugador ActuaJugador = new FRM_ActualizacionRegistroJugador();
@@ -53,6 +46,7 @@ namespace ProyectoBD1
             }
             else
             {
+
                 ClsRegistroJugador Jugador = new ClsRegistroJugador();
 
                 Jugador.Nombre = txt_NombreJugador.Text;
@@ -86,7 +80,7 @@ namespace ProyectoBD1
                 }
                 else
                 {
-                    int Resultado = ClsProcedimientos.GuardarJugador(Jugador);
+                    int Resultado = ClsProcedimientos.GuardarJugador(Jugador,cbo_Cargar_Equipos.Text);
 
 
                     if (Resultado > 0)
@@ -99,7 +93,6 @@ namespace ProyectoBD1
                     }
                 }
             }
-            refreshPantalla();
         }
 
         private void FRM_RegistroJugador_Load(object sender, EventArgs e)
@@ -107,27 +100,14 @@ namespace ProyectoBD1
             ClsConexion Conexion = new ClsConexion();
             Conexion.CrearConexion();
 
-            refreshPantalla();
+            dgvRegistroJugador.DataSource  = ClsProcedimientos.PresentarRegistroJugador();
 
-            //txt_Equipo.Enabled = false;
+            txt_Equipo.Enabled = false;
             txt_Id_Jugador.Enabled = false;
         }
         public void refreshPantalla()
         {
             dgvRegistroJugador.DataSource = ClsProcedimientos.PresentarRegistroJugador();
-        }
-
-        private void dgvRegistroJugador_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_Id_Jugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["id_Jugador"].Value);
-            txt_Equipo.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["id_Equipo"].Value);
-            txt_NombreJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Nombre"].Value);
-            txt_ApellidoJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Apellido"].Value);
-            txt_DocumentoJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Documento"].Value);
-            txt_EdadJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Edad"].Value);
-            txt_GeneroJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Genero"].Value);
-            txt_TeleJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Telefono"].Value);
-            txt_CorreoJugador.Text = Convert.ToString(dgvRegistroJugador.CurrentRow.Cells["Correo"].Value);
         }
 
         private void btnModificarJugador_Click(object sender, EventArgs e)
@@ -161,7 +141,6 @@ namespace ProyectoBD1
                     {
                         MessageBox.Show("Error en la eliminación de datos");
                     }
-                    refreshPantalla();
                 }
 
             }
@@ -173,16 +152,15 @@ namespace ProyectoBD1
             {
                 Conexion.Open();
 
-                SqlCommand Comando = new SqlCommand("SELECT * FROM REGISTRO_EQUIPO WHERE Estado = 1", Conexion);
+                SqlCommand Comando = new SqlCommand("SELECT * FROM REGISTRO_EQUIPOS WHERE Estado = 1", Conexion);
                 SqlDataReader Lector = Comando.ExecuteReader();
 
                 List<ClsRegistroEquipo> listaTorneos = new List<ClsRegistroEquipo>();
                 while (Lector.Read())
                 {
-                    cbo_Cargar_Equipos.Items.Add(Lector[1].ToString());
-                    cbo_Cargar_Equipos.Items.Add(Lector[2].ToString());
+                    cbo_Cargar_Equipos.Items.Add(Lector[0].ToString());
                 }
-                cbo_Cargar_Equipos.Items.Insert(0, "-Selecciones torneo-");
+                cbo_Cargar_Equipos.Items.Insert(0, "-Seleccione torneo-");
                 cbo_Cargar_Equipos.SelectedIndex = 0;
             }
             catch (Exception ex)

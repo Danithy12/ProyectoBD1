@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoCRUD;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace ProyectoBD1
         private void btn_SalirPresentacion_Click(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
 
         private void btn_Iniciar_Click(object sender, EventArgs e)
@@ -28,6 +30,7 @@ namespace ProyectoBD1
             Contenido.Show();
 
             this.Hide();
+       
         }
 
         private void btn_Historial_Click(object sender, EventArgs e)

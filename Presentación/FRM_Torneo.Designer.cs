@@ -56,7 +56,7 @@
             this.lbl_UbicacionTorneo.AutoSize = true;
             this.lbl_UbicacionTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_UbicacionTorneo.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_UbicacionTorneo.Location = new System.Drawing.Point(12, 332);
+            this.lbl_UbicacionTorneo.Location = new System.Drawing.Point(12, 280);
             this.lbl_UbicacionTorneo.Name = "lbl_UbicacionTorneo";
             this.lbl_UbicacionTorneo.Size = new System.Drawing.Size(108, 24);
             this.lbl_UbicacionTorneo.TabIndex = 12;
@@ -68,7 +68,7 @@
             this.lbl_FechaInicio.AutoSize = true;
             this.lbl_FechaInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_FechaInicio.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_FechaInicio.Location = new System.Drawing.Point(14, 197);
+            this.lbl_FechaInicio.Location = new System.Drawing.Point(14, 115);
             this.lbl_FechaInicio.Name = "lbl_FechaInicio";
             this.lbl_FechaInicio.Size = new System.Drawing.Size(135, 24);
             this.lbl_FechaInicio.TabIndex = 14;
@@ -91,10 +91,10 @@
             // 
             this.txt_FechaTorneo.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_FechaTorneo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_FechaTorneo.Location = new System.Drawing.Point(162, 197);
+            this.txt_FechaTorneo.Location = new System.Drawing.Point(162, 115);
             this.txt_FechaTorneo.Name = "txt_FechaTorneo";
             this.txt_FechaTorneo.Size = new System.Drawing.Size(191, 26);
-            this.txt_FechaTorneo.TabIndex = 21;
+            this.txt_FechaTorneo.TabIndex = 1;
             this.txt_FechaTorneo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dgvTorneo
@@ -109,16 +109,15 @@
             this.dgvTorneo.RowTemplate.Height = 28;
             this.dgvTorneo.Size = new System.Drawing.Size(1442, 395);
             this.dgvTorneo.TabIndex = 22;
-            this.dgvTorneo.SelectionChanged += new System.EventHandler(this.dgvTorneo_SelectionChanged);
             // 
             // txt_UbicacionTorneo
             // 
             this.txt_UbicacionTorneo.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_UbicacionTorneo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_UbicacionTorneo.Location = new System.Drawing.Point(162, 333);
+            this.txt_UbicacionTorneo.Location = new System.Drawing.Point(162, 281);
             this.txt_UbicacionTorneo.Name = "txt_UbicacionTorneo";
             this.txt_UbicacionTorneo.Size = new System.Drawing.Size(191, 26);
-            this.txt_UbicacionTorneo.TabIndex = 25;
+            this.txt_UbicacionTorneo.TabIndex = 3;
             this.txt_UbicacionTorneo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_NombreTorneo
@@ -128,7 +127,7 @@
             this.txt_NombreTorneo.Location = new System.Drawing.Point(162, 47);
             this.txt_NombreTorneo.Name = "txt_NombreTorneo";
             this.txt_NombreTorneo.Size = new System.Drawing.Size(191, 26);
-            this.txt_NombreTorneo.TabIndex = 27;
+            this.txt_NombreTorneo.TabIndex = 0;
             this.txt_NombreTorneo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_GuardarTorneo
@@ -183,10 +182,10 @@
             // 
             this.txt_ReglasEspecificas.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_ReglasEspecificas.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_ReglasEspecificas.Location = new System.Drawing.Point(162, 400);
+            this.txt_ReglasEspecificas.Location = new System.Drawing.Point(162, 349);
             this.txt_ReglasEspecificas.Name = "txt_ReglasEspecificas";
             this.txt_ReglasEspecificas.Size = new System.Drawing.Size(191, 26);
-            this.txt_ReglasEspecificas.TabIndex = 34;
+            this.txt_ReglasEspecificas.TabIndex = 4;
             this.txt_ReglasEspecificas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_Reglas
@@ -194,7 +193,7 @@
             this.lbl_Reglas.AutoSize = true;
             this.lbl_Reglas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_Reglas.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Reglas.Location = new System.Drawing.Point(14, 399);
+            this.lbl_Reglas.Location = new System.Drawing.Point(14, 348);
             this.lbl_Reglas.Name = "lbl_Reglas";
             this.lbl_Reglas.Size = new System.Drawing.Size(75, 24);
             this.lbl_Reglas.TabIndex = 33;
@@ -243,10 +242,10 @@
             // 
             this.txt_FechaFinal.BackColor = System.Drawing.Color.DarkKhaki;
             this.txt_FechaFinal.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_FechaFinal.Location = new System.Drawing.Point(162, 273);
+            this.txt_FechaFinal.Location = new System.Drawing.Point(162, 205);
             this.txt_FechaFinal.Name = "txt_FechaFinal";
             this.txt_FechaFinal.Size = new System.Drawing.Size(191, 26);
-            this.txt_FechaFinal.TabIndex = 38;
+            this.txt_FechaFinal.TabIndex = 2;
             this.txt_FechaFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_FechaFinal_Torneo
@@ -254,7 +253,7 @@
             this.lbl_FechaFinal_Torneo.AutoSize = true;
             this.lbl_FechaFinal_Torneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_FechaFinal_Torneo.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_FechaFinal_Torneo.Location = new System.Drawing.Point(14, 275);
+            this.lbl_FechaFinal_Torneo.Location = new System.Drawing.Point(14, 207);
             this.lbl_FechaFinal_Torneo.Name = "lbl_FechaFinal_Torneo";
             this.lbl_FechaFinal_Torneo.Size = new System.Drawing.Size(130, 24);
             this.lbl_FechaFinal_Torneo.TabIndex = 37;
@@ -264,7 +263,7 @@
             // cboBox_Categoria_Torneo
             // 
             this.cboBox_Categoria_Torneo.FormattingEnabled = true;
-            this.cboBox_Categoria_Torneo.Location = new System.Drawing.Point(153, 124);
+            this.cboBox_Categoria_Torneo.Location = new System.Drawing.Point(162, 414);
             this.cboBox_Categoria_Torneo.Name = "cboBox_Categoria_Torneo";
             this.cboBox_Categoria_Torneo.Size = new System.Drawing.Size(191, 28);
             this.cboBox_Categoria_Torneo.TabIndex = 39;
@@ -274,7 +273,7 @@
             this.lbl_Categoria.AutoSize = true;
             this.lbl_Categoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbl_Categoria.Font = new System.Drawing.Font("Modern No. 20", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Categoria.Location = new System.Drawing.Point(17, 124);
+            this.lbl_Categoria.Location = new System.Drawing.Point(12, 414);
             this.lbl_Categoria.Name = "lbl_Categoria";
             this.lbl_Categoria.Size = new System.Drawing.Size(103, 24);
             this.lbl_Categoria.TabIndex = 40;

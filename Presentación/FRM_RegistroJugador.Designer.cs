@@ -65,7 +65,7 @@
             this.txt_TeleJugador.Location = new System.Drawing.Point(768, 158);
             this.txt_TeleJugador.Name = "txt_TeleJugador";
             this.txt_TeleJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_TeleJugador.TabIndex = 54;
+            this.txt_TeleJugador.TabIndex = 5;
             this.txt_TeleJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_NombreJugador
@@ -75,7 +75,7 @@
             this.txt_NombreJugador.Location = new System.Drawing.Point(178, 60);
             this.txt_NombreJugador.Name = "txt_NombreJugador";
             this.txt_NombreJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_NombreJugador.TabIndex = 53;
+            this.txt_NombreJugador.TabIndex = 0;
             this.txt_NombreJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_GeneroJugador
@@ -85,7 +85,7 @@
             this.txt_GeneroJugador.Location = new System.Drawing.Point(768, 60);
             this.txt_GeneroJugador.Name = "txt_GeneroJugador";
             this.txt_GeneroJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_GeneroJugador.TabIndex = 50;
+            this.txt_GeneroJugador.TabIndex = 4;
             this.txt_GeneroJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_DocumentoJugador
@@ -95,7 +95,7 @@
             this.txt_DocumentoJugador.Location = new System.Drawing.Point(487, 60);
             this.txt_DocumentoJugador.Name = "txt_DocumentoJugador";
             this.txt_DocumentoJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_DocumentoJugador.TabIndex = 49;
+            this.txt_DocumentoJugador.TabIndex = 2;
             this.txt_DocumentoJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_EdadJugador
@@ -105,7 +105,7 @@
             this.txt_EdadJugador.Location = new System.Drawing.Point(487, 158);
             this.txt_EdadJugador.Name = "txt_EdadJugador";
             this.txt_EdadJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_EdadJugador.TabIndex = 48;
+            this.txt_EdadJugador.TabIndex = 3;
             this.txt_EdadJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dgvRegistroJugador
@@ -120,7 +120,6 @@
             this.dgvRegistroJugador.RowTemplate.Height = 28;
             this.dgvRegistroJugador.Size = new System.Drawing.Size(1428, 362);
             this.dgvRegistroJugador.TabIndex = 57;
-            this.dgvRegistroJugador.SelectionChanged += new System.EventHandler(this.dgvRegistroJugador_SelectionChanged);
             // 
             // btn_SalirPresentacion
             // 
@@ -257,7 +256,7 @@
             this.txt_CorreoJugador.Location = new System.Drawing.Point(1023, 158);
             this.txt_CorreoJugador.Name = "txt_CorreoJugador";
             this.txt_CorreoJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_CorreoJugador.TabIndex = 72;
+            this.txt_CorreoJugador.TabIndex = 6;
             this.txt_CorreoJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_Equipo
@@ -335,7 +334,7 @@
             this.txt_ApellidoJugador.Location = new System.Drawing.Point(178, 158);
             this.txt_ApellidoJugador.Name = "txt_ApellidoJugador";
             this.txt_ApellidoJugador.Size = new System.Drawing.Size(191, 26);
-            this.txt_ApellidoJugador.TabIndex = 79;
+            this.txt_ApellidoJugador.TabIndex = 1;
             this.txt_ApellidoJugador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3

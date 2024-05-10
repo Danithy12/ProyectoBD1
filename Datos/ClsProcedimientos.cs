@@ -40,49 +40,6 @@ namespace ProyectoBD1
             }
             return Retorna;
         }
-        public static List<ClsTorneo> ObtenerTorneosActivos()
-        {
-            List<ClsTorneo> torneosActivos = new List<ClsTorneo>();
-            SqlConnection Conexion = null;
-
-            try
-            {
-                Conexion = ClsConexion.GetInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("SELECT * FROM TORNEOS WHERE Estado = 1", Conexion);
-
-                Conexion.Open();
-                SqlDataReader Reader = Comando.ExecuteReader();
-
-                while (Reader.Read())
-                {
-                    ClsTorneo torneo = new ClsTorneo
-                    {
-                        id_Torneo = Reader.GetInt32(Reader.GetOrdinal("id_Torneo")),
-                        Nombre_torneo = Reader.IsDBNull(Reader.GetOrdinal("Nombre_torneo")) ? null : Reader.GetString(Reader.GetOrdinal("Nombre_torneo")),
-                        Categoria_T = Reader.IsDBNull(Reader.GetOrdinal("Categoria_T")) ? null : Reader.GetString(Reader.GetOrdinal("Categoria_T")),
-                        Fecha_Inicio = Reader.GetDateTime(Reader.GetOrdinal("Fecha_Inicio")),
-                        Fecha_Final = Reader.GetDateTime(Reader.GetOrdinal("Fecha_Final")),
-                        Ubicacion_T = Reader.IsDBNull(Reader.GetOrdinal("Ubicacion_T")) ? null : Reader.GetString(Reader.GetOrdinal("Ubicacion_T")),
-                        Reglas_Especificas = Reader.IsDBNull(Reader.GetOrdinal("Reglas_Especificas")) ? null : Reader.GetString(Reader.GetOrdinal("Reglas_Especificas")),
-                        Estado = Reader.GetBoolean(Reader.GetOrdinal("Estado"))
-                    };
-                    torneosActivos.Add(torneo);
-                }
-                Reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al obtener los torneos activos: " + ex.Message);
-            }
-            finally
-            {
-                if (Conexion != null && Conexion.State == ConnectionState.Open)
-                {
-                    Conexion.Close();
-                }
-            }
-            return torneosActivos;
-        }
 
         //Creamos una lista para mostrar en nuestro data view todos los datos que ingresemos
         public static List<ClsTorneo> PresentarRegistroTorneo()
@@ -109,6 +66,7 @@ namespace ProyectoBD1
                     torneo.Fecha_Final = Reader.GetDateTime(4);
                     torneo.Ubicacion_T = Reader.GetString(5);
                     torneo.Reglas_Especificas = Reader.GetString(6);
+                    torneo.Estado = Reader.GetBoolean(7);
                     Lista.Add(torneo);
 
                 }
@@ -158,7 +116,7 @@ namespace ProyectoBD1
             return Retorna;
         }
 
-        public static int GuardarJugador(ClsRegistroJugador Jugador) //Ingresamos objeto de la clase Registro_Jugador
+        public static int GuardarJugador(ClsRegistroJugador Jugador, string id_Equipo) //Ingresamos objeto de la clase Registro_Jugador
         {
             int Retorna = 0;
 
@@ -166,8 +124,9 @@ namespace ProyectoBD1
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
                 //Variable para registrar todos los datos llamados por medio del objeto de la clase
-                string query = "INSERT INTO REGISTRO_JUGADOR (Nombre, Apellido, Documento, Edad, Genero, Telefono, Correo)" +
-                    " VALUES('" + Jugador.Nombre + "', '" + Jugador.Apellido + "', '" + Jugador.Documento + "', " + Jugador.Edad + ", '" + Jugador.Genero + "', '" + Jugador.Telefono + "', '" + Jugador.Correo + "' )"; 
+                string query = "INSERT INTO REGISTRO_JUGADOR (id_Equipo,Nombre, Apellido, Documento, Edad, Genero, Telefono, Correo,Estado)" +
+                    " VALUES("+id_Equipo+",'" + Jugador.Nombre + "', '" + Jugador.Apellido + "', '" + Jugador.Documento + "', " + Jugador.Edad + ", " +
+                    "'" + Jugador.Genero + "', '" + Jugador.Telefono + "', '" + Jugador.Correo + "',"+1+" )"; 
 
                 //Creamos un comando de Sql que resiva nuestra variable con los datos y nuestro objeto de la clase conexion
                 SqlCommand Comando = new SqlCommand(query, Conexion);
@@ -178,57 +137,13 @@ namespace ProyectoBD1
             }
             return Retorna;
         }
-        
-        public static List<ClsRegistroEquipo> ObtenerRegistroEquipoActivos()
-        {
-            List<ClsRegistroEquipo> torneosActivos = new List<ClsRegistroEquipo>();
-            SqlConnection Conexion = null;
-
-            try
-            {
-                Conexion = ClsConexion.GetInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("SELECT * FROM REGISTRO_EQUIPO WHERE id_Equipo = 1", Conexion);
-
-                Conexion.Open();
-                SqlDataReader Reader = Comando.ExecuteReader();
-
-                while (Reader.Read())
-                {
-                    ClsRegistroEquipo Equipo = new ClsRegistroEquipo
-                    {
-                        id_Equipo = Reader.GetInt32(Reader.GetOrdinal("id_Equipo")),
-                        id_Torneo = Reader.GetInt32(Reader.GetOrdinal("id_Torneo")),
-                        Nombre = Reader.GetString(Reader.GetOrdinal("Nombre")),
-                        Categoria = Reader.GetString(Reader.GetOrdinal("Categoria")),
-                        Cantidad_Jugadores = Reader.GetInt32(Reader.GetOrdinal("Cantidad_Jugadores")),
-                        Patrocinadores = Reader.GetString(Reader.GetOrdinal("Patrocinadores")),
-                        Estado = Reader.GetBoolean(Reader.GetOrdinal("Estado"))
-                    };
-                    torneosActivos.Add(Equipo);
-                }
-                Reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al obtener los Equipos activos: " + ex.Message);
-            }
-            finally
-            {
-                if (Conexion != null && Conexion.State == ConnectionState.Open)
-                {
-                    Conexion.Close();
-                }
-            }
-            return torneosActivos;
-        }
-
         public static List<ClsRegistroJugador> PresentarRegistroJugador()
         {
             List<ClsRegistroJugador> Lista = new List<ClsRegistroJugador>();
             //Conexion
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
-                string query = "SELECT * FROM REGISTRO_JUGADOR"; //Variabl no con los datos sino con la sintaxis de una consulta general en Sql Server
+                string query = "SELECT * FROM REGISTRO_JUGADOR"; //Variable no con los datos sino con la sintaxis de una consulta general en Sql Server
                 //Comando
                 SqlCommand Comando = new SqlCommand(query, Conexion);
                 //Comando para leer los datos
@@ -238,6 +153,7 @@ namespace ProyectoBD1
                 {
                     //Objeto de classe Jugador + sus atributos
                     ClsRegistroJugador Jugador = new ClsRegistroJugador();
+
                     Jugador.id_Jugador = Reader.GetInt32(0);
                     Jugador.id_Equipo = Reader.GetInt32(1);
                     Jugador.Nombre = Reader.GetString(2);
@@ -247,6 +163,7 @@ namespace ProyectoBD1
                     Jugador.Genero = Reader.GetString(6);
                     Jugador.Telefono = Reader.GetString(7);
                     Jugador.Correo = Reader.GetString(8);
+                    Jugador.Estado = Reader.GetBoolean(9);
                     Lista.Add(Jugador);
 
                 }
@@ -301,14 +218,13 @@ namespace ProyectoBD1
         {
             int Retorna = 0;
 
-            //id_torneo = Convert.ToInt32(id_torneo); 
             //Creamos la conexión con SQL SERVER y en su defecto nuestra base de datos por medio del comando SqlConnection
             using (SqlConnection Conexion = ClsConexion.GetInstancia().CrearConexion())
             {
                 //Variable para registrar todos los datos llamados por medio del objeto de la clase
                 string query = "INSERT INTO REGISTRO_EQUIPOS(id_Torneo,Nombre, Categoria, Cantidad_Jugadores, Patrocinadores,Estado)" +
                     " VALUES("+id_torneo+ ",'" + Equipo.Nombre + "', '" + Equipo.Categoria + "', " + Equipo.Cantidad_Jugadores + ", '" +
-                    Equipo.Patrocinadores + "',"+0+" )";
+                    Equipo.Patrocinadores + "',"+1+" )";
 
                 //Creamos un comando de Sql que resiva nuestra variable con los datos y nuestro objeto de la clase conexion
                 SqlCommand Comando = new SqlCommand(query, Conexion);
@@ -343,12 +259,14 @@ namespace ProyectoBD1
                 {
                     //Objeto de classe Registro_Equipo + sus atributos
                     ClsRegistroEquipo Equipo = new ClsRegistroEquipo();
+
                     Equipo.id_Equipo = Reader.GetInt32(0);
                     Equipo.id_Torneo = Reader.GetInt32(1);
                     Equipo.Nombre = Reader.GetString(2);
                     Equipo.Categoria = Reader.GetString(3);
                     Equipo.Cantidad_Jugadores = Reader.GetInt32(4);
                     Equipo.Patrocinadores = Reader.GetString(5);
+                    Equipo.Estado = Reader.GetBoolean(6);
                     Lista.Add(Equipo);
 
                 }

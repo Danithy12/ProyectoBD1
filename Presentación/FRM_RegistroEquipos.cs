@@ -12,10 +12,9 @@ using System.Windows.Forms;
 
 namespace ProyectoBD1
 {
-    public partial class FRM_RegistroEquipos : Form
+    public partial class RegistroEquiposs : Form
     {
-        int poc;
-        public FRM_RegistroEquipos()
+        public RegistroEquiposs()
         {
             InitializeComponent();
             CargarTorneo();
@@ -26,18 +25,21 @@ namespace ProyectoBD1
         {
             this.Close();
         }
-
-        private void btn_Atras_Click(object sender, EventArgs e)
-        {
-            FRM_Contenido Contenido = new FRM_Contenido();
-            Contenido.Show();
-        }
-
         private void btn_GuardarTorneo_Click(object sender, EventArgs e)
         {
+            //Variable que guardará la cantidad de jugadores
+            int CantidadJugadores;
+            // Booleano para comprobar que el número ingresado sea mayor que 0
+            bool NumeroValido = int.TryParse(txt_CantidadJugadores.Text,out CantidadJugadores);
+            if (!NumeroValido || CantidadJugadores <= 0)
+            {
+                MessageBox.Show("Carechimba como putas va a jugar con " + CantidadJugadores + " jugadores"," Error de validación"
+                    ,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(txt_CantidadJugadores.Text) ||
                 string.IsNullOrWhiteSpace(cbo_CargarCategoria.Text) ||
-                string.IsNullOrWhiteSpace(cbo_CargarTorneo.Text)||
+                string.IsNullOrWhiteSpace(cbo_CargarTorneo.Text) ||
                 string.IsNullOrWhiteSpace(txt_Nombre_Equipo.Text)
                 )
             {
@@ -45,6 +47,7 @@ namespace ProyectoBD1
             }
             else
             {
+
                 ClsRegistroEquipo Equipo = new ClsRegistroEquipo();
 
                 Equipo.Nombre = txt_Nombre_Equipo.Text;
@@ -56,7 +59,7 @@ namespace ProyectoBD1
                 {
                     int id = Convert.ToInt32(dgvRegistroEquipos.CurrentRow.Cells["id_Equipo"].Value);
 
-                        if (id != null)
+                    if (id != null)
                     {
                         Equipo.id_Equipo = id;
                         int Resulta = ClsProcedimientos.ModificarRegistroEquipo(Equipo);
@@ -73,26 +76,30 @@ namespace ProyectoBD1
                 }
                 else
                 {
-                    int Resulta = ClsProcedimientos.GuardarEquipo(Equipo,cbo_CargarTorneo.Text);
+                    int Resulta = ClsProcedimientos.GuardarEquipo(Equipo, cbo_CargarTorneo.Text);
 
                     if (Resulta > 0)
                     {
                         MessageBox.Show("Datos guardados con éxito");
+                        refreshPantalla();
                     }
                     else
                     {
                         MessageBox.Show("Error al guardar los datos");
                     }
                 }
+                
 
             }
             refreshPantalla();
         }
-
         private void FRM_RegistroEquipos_Load(object sender, EventArgs e)
         {
             ClsConexion Conexion = new ClsConexion();
             Conexion.CrearConexion();
+
+
+            dgvRegistroEquipos.DataSource =  ClsProcedimientos.PresentarRegistroEquipo();
 
             txt_IdEquipo.Enabled = false;
             txt_IdTorneo.Enabled = false;
@@ -101,17 +108,6 @@ namespace ProyectoBD1
         {
             dgvRegistroEquipos.DataSource = ClsProcedimientos.PresentarRegistroEquipo();
         }
-
-        private void dgvRegistroEquipos_SelectionChanged(object sender, EventArgs e)
-        {
-            //txt_IdEquipo.Text = Convert.ToString(dgvRegistroEquipos.CurrentRow.Cells["id_Equipo"].Value);
-            //cbo_CargarTorneo.Text = Convert.ToString(dgvRegistroEquipos.CurrentRow.Cells["id_Torneo"].Value);
-            txt_Nombre_Equipo.Text = Convert.ToString(dgvRegistroEquipos.CurrentRow.Cells["Nombre"].Value);
-            cbo_CargarCategoria.Text = Convert.ToString(dgvRegistroEquipos.CurrentRow.Cells["Categoria"].Value);
-            txt_CantidadJugadores.Text = Convert.ToString(dgvRegistroEquipos.CurrentRow.Cells["Cantidad_Jugadores"].Value);
-            txt_Patrocinadores_Equipo.Text = Convert.ToString(dgvRegistroEquipos.CurrentRow.Cells["Patrocinadores"].Value);
-        }
-
         private void btnLimpiarEquipos_Click(object sender, EventArgs e)
         {
             txt_IdEquipo.Clear();
@@ -139,9 +135,9 @@ namespace ProyectoBD1
                 {
                     MessageBox.Show("Error en la eliminación de datos");
                 }
-                refreshPantalla();
             }
         }
+
         private void CargarTorneo()
         {
             try
@@ -154,14 +150,13 @@ namespace ProyectoBD1
                 while (Lector.Read())
                 {
                     cbo_CargarTorneo.Items.Add(Lector[0].ToString());
-                    //cbo_CargarTorneo.Items.Add(Lector[1].ToString());
                 }
-                cbo_CargarTorneo.Items.Insert(0, "-Seleccione un torneo-");
+                cbo_CargarTorneo.Items.Insert(0, "-Seleccione Equipo-");
                 cbo_CargarTorneo.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los torneos: " + ex.Message);
+                MessageBox.Show("Error al cargar los equipos: " + ex.Message);
             }
             finally
             {
@@ -178,7 +173,7 @@ namespace ProyectoBD1
 
             SqlCommand Comando = new SqlCommand("SELECT * FROM CATEGORIAS", Conexion);
 
-            SqlDataReader Leer = Comando.ExecuteReader();      
+            SqlDataReader Leer = Comando.ExecuteReader();
             while (Leer.Read())
             {
                 cbo_CargarCategoria.Items.Add(Leer[0].ToString());
@@ -186,17 +181,12 @@ namespace ProyectoBD1
                 cbo_CargarCategoria.Items.Add(Leer[2].ToString());
                 cbo_CargarCategoria.Items.Add(Leer[3].ToString());
             }
-           
-            
+
+
             Conexion.Close();
 
             cbo_CargarCategoria.Items.Insert(0, "-Seleccione categoría-");
             cbo_CargarCategoria.SelectedIndex = 0;
-        }
-
-        private void cbo_CargarTorneo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

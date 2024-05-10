@@ -280,7 +280,6 @@
             this.dgvRegistroActualizacionJugador.RowTemplate.Height = 28;
             this.dgvRegistroActualizacionJugador.Size = new System.Drawing.Size(1428, 362);
             this.dgvRegistroActualizacionJugador.TabIndex = 85;
-            this.dgvRegistroActualizacionJugador.SelectionChanged += new System.EventHandler(this.dgvRegistroActualizacionJugador_SelectionChanged);
             // 
             // txt_NuevoTeleJugador
             // 

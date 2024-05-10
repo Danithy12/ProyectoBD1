@@ -36,6 +36,7 @@
             this.btn_RegistroJugador = new System.Windows.Forms.Button();
             this.btn_Resultados = new System.Windows.Forms.Button();
             this.btn_SalirPresentacion = new System.Windows.Forms.Button();
+            this.btn_VolverAtras = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Torneo
@@ -144,11 +145,28 @@
             this.btn_SalirPresentacion.UseVisualStyleBackColor = false;
             this.btn_SalirPresentacion.Click += new System.EventHandler(this.btn_SalirPresentacion_Click);
             // 
+            // btn_VolverAtras
+            // 
+            this.btn_VolverAtras.BackColor = System.Drawing.Color.DarkKhaki;
+            this.btn_VolverAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_VolverAtras.Font = new System.Drawing.Font("Modern No. 20", 7.999999F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_VolverAtras.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_VolverAtras.Image = ((System.Drawing.Image)(resources.GetObject("btn_VolverAtras.Image")));
+            this.btn_VolverAtras.Location = new System.Drawing.Point(31, 478);
+            this.btn_VolverAtras.Name = "btn_VolverAtras";
+            this.btn_VolverAtras.Size = new System.Drawing.Size(167, 74);
+            this.btn_VolverAtras.TabIndex = 9;
+            this.btn_VolverAtras.Text = "Volver Inicio";
+            this.btn_VolverAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_VolverAtras.UseVisualStyleBackColor = false;
+            this.btn_VolverAtras.Click += new System.EventHandler(this.btn_VolverAtras_Click);
+            // 
             // FRM_Contenido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 564);
+            this.Controls.Add(this.btn_VolverAtras);
             this.Controls.Add(this.btn_SalirPresentacion);
             this.Controls.Add(this.btn_Resultados);
             this.Controls.Add(this.btn_RegistroJugador);
@@ -157,6 +175,7 @@
             this.Controls.Add(this.btn_Programacion);
             this.Controls.Add(this.btn_Torneo);
             this.Name = "FRM_Contenido";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRM_Contenido";
             this.ResumeLayout(false);
 
@@ -171,5 +190,6 @@
         private System.Windows.Forms.Button btn_RegistroJugador;
         private System.Windows.Forms.Button btn_Resultados;
         private System.Windows.Forms.Button btn_SalirPresentacion;
+        private System.Windows.Forms.Button btn_VolverAtras;
     }
 }
